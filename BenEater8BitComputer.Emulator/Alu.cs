@@ -16,8 +16,6 @@ public class Alu : Component
 
     public byte Sum { get; private set; }
 
-    public bool Subtract { get; internal set; }
-
     public override void Low()
     {
         Calculate();
@@ -30,9 +28,10 @@ public class Alu : Component
 
     private void Calculate()
     {
+        var sub = bus.HasControlLineFlags(ControlLineFlags.SU);
         var a = aRegister.Value;
-        var b = (byte)(Subtract ? ~bRegister.Value : bRegister.Value);
-        var carryIn = Subtract ? 1 : 0;
+        var b = (byte)(sub ? ~bRegister.Value : bRegister.Value);
+        var carryIn = sub ? 1 : 0;
         Sum = (byte)(a + b + carryIn);
 
         if (bus.HasControlLineFlags(ControlLineFlags.EO))

@@ -19,11 +19,12 @@ namespace BenEater8BitComputer.Emulator.Tests
         }
 
         [Fact]
-        public void Given_AAndBRegister_ShouldSumValues()
+        public void Given_AAndBRegister_AndSUControlLineIsDisabled_ShouldSumValues()
         {
             // Arrange
             aRegister.Value = 6;
             bRegister.Value = 2;
+            bus.SetControleLineFlags(~ControlLineFlags.SU);
 
             // Act
             sut.Low();
@@ -33,12 +34,12 @@ namespace BenEater8BitComputer.Emulator.Tests
         }
 
         [Fact]
-        public void Given_AAndBRegister_AndSubstractIsTrue_ShouldSubtract()
+        public void Given_AAndBRegister_AndSUControlLineIsEnabled_ShouldSubtractValues()
         {
             // Arrange
             aRegister.Value = 6;
             bRegister.Value = 2;
-            sut.Subtract = true;
+            bus.SetControleLineFlags(ControlLineFlags.SU);
 
             // Act
             sut.Low();

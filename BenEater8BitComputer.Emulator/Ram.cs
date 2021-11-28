@@ -17,12 +17,9 @@ public class Ram : Component
     // Value in memory address pointed by the memory address register
     public byte Value => Data.GetValueOrDefault(memoryAddressRegister.Value);
 
-    public bool RamIn { get; internal set; }
-    public bool RamOut { get; internal set; }
-
     public override void Low()
     {
-        if (RamOut)
+        if (bus.HasControlLineFlags(ControlLineFlags.RO))
         {
             bus.Write(Value);
         }
@@ -30,7 +27,7 @@ public class Ram : Component
 
     public override void High()
     {
-        if (RamIn)
+        if (bus.HasControlLineFlags(ControlLineFlags.RI))
         {
             Data[memoryAddressRegister.Value] = bus.Read();
         }

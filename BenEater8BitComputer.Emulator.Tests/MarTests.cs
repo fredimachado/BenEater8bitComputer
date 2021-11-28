@@ -15,12 +15,12 @@ namespace BenEater8BitComputer.Emulator.Tests
         }
 
         [Fact]
-        public void Given_DataInBus_AndMarInIsFalse_ShouldNotReadValueFromBus()
+        public void Given_DataInBus_AndControlLineIsDisabled_ShouldNotReadValueFromBus()
         {
             // Arrange
             byte data = 5;
             bus.Data = data;
-            sut.MemoryAddressRegisterIn = false;
+            bus.SetControleLineFlags(~ControlLineFlags.MI);
 
             // Act
             sut.RisingEdge();
@@ -30,12 +30,12 @@ namespace BenEater8BitComputer.Emulator.Tests
         }
 
         [Fact]
-        public void Given_DataInBus_AndMarInIsTrue_ShouldReadValueFromBus()
+        public void Given_DataInBus_AndControlLineIsEnabled_ShouldReadValueFromBus()
         {
             // Arrange
             byte data = 5;
             bus.Data = data;
-            sut.MemoryAddressRegisterIn = true;
+            bus.SetControleLineFlags(ControlLineFlags.MI);
 
             // Act
             sut.RisingEdge();
@@ -51,7 +51,7 @@ namespace BenEater8BitComputer.Emulator.Tests
             byte expected = 0xA;
             byte data = 0xFA;
             bus.Data = data;
-            sut.MemoryAddressRegisterIn = true;
+            bus.SetControleLineFlags(ControlLineFlags.MI);
 
             // Act
             sut.RisingEdge();

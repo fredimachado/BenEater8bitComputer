@@ -18,14 +18,14 @@ namespace BenEater8BitComputer.Emulator.Tests
         }
 
         [Fact]
-        public void Given_RamInIsFalse_ShouldNotReadValueFromBus()
+        public void Given_RIControlLineIsDisabled_ShouldNotReadValueFromBus()
         {
             // Arrange
             byte address = 0xA;
             byte data = 5;
             mar.Value = address;
             bus.Data = data;
-            sut.RamIn = false;
+            bus.SetControleLineFlags(~ControlLineFlags.RI);
 
             // Act
             sut.High();
@@ -35,14 +35,14 @@ namespace BenEater8BitComputer.Emulator.Tests
         }
 
         [Fact]
-        public void Given_RamInIsTrue_ReadsValueFromBus()
+        public void Given_RIControlLineIsDisabled_ReadsValueFromBus()
         {
             // Arrange
             byte address = 0xA;
             byte data = 5;
             mar.Value = address;
             bus.Data = data;
-            sut.RamIn = true;
+            bus.SetControleLineFlags(ControlLineFlags.RI);
 
             // Act
             sut.High();
@@ -52,14 +52,14 @@ namespace BenEater8BitComputer.Emulator.Tests
         }
 
         [Fact]
-        public void Given_RamOutIsFalse_WritesValueToBus()
+        public void Given_ROControlLineIsDisabled_WritesValueToBus()
         {
             // Arrange
             byte address = 0xA;
             byte data = 5;
             mar.Value = address;
             sut.Data[address] = data;
-            sut.RamOut = false;
+            bus.SetControleLineFlags(~ControlLineFlags.RO);
 
             // Act
             sut.Low();
@@ -69,14 +69,14 @@ namespace BenEater8BitComputer.Emulator.Tests
         }
 
         [Fact]
-        public void Given_RamOutIsTrue_WritesValueToBus()
+        public void Given_ROControlLineIsEnabled_WritesValueToBus()
         {
             // Arrange
             byte address = 0xA;
             byte data = 5;
             mar.Value = address;
             sut.Data[address] = data;
-            sut.RamOut = true;
+            bus.SetControleLineFlags(ControlLineFlags.RO);
 
             // Act
             sut.Low();
