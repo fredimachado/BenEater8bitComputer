@@ -19,7 +19,7 @@ namespace BenEater8BitComputer.Emulator.Tests
         }
 
         [Fact]
-        public void SumsARegisterAndBRegister()
+        public void Given_AAndBRegister_ShouldSumValues()
         {
             // Arrange
             aRegister.Value = 6;
@@ -33,7 +33,7 @@ namespace BenEater8BitComputer.Emulator.Tests
         }
 
         [Fact]
-        public void SubtractsBRegisterFromARegister()
+        public void Given_AAndBRegister_AndSubstractIsTrue_ShouldSubtract()
         {
             // Arrange
             aRegister.Value = 6;
@@ -45,6 +45,36 @@ namespace BenEater8BitComputer.Emulator.Tests
 
             // Assert
             sut.Sum.ShouldBe((byte)4);
+        }
+
+        [Fact]
+        public void Given_AAndBRegister_AndAluOutIsFalse_ShouldNotWriteResultToBus()
+        {
+            // Arrange
+            aRegister.Value = 6;
+            bRegister.Value = 2;
+            sut.AluOut = false;
+
+            // Act
+            sut.Low();
+
+            // Assert
+            bus.Data.ShouldNotBe((byte)8);
+        }
+
+        [Fact]
+        public void Given_AAndBRegister_AndAluOutIsTrue_ShouldWriteResultToBus()
+        {
+            // Arrange
+            aRegister.Value = 6;
+            bRegister.Value = 2;
+            sut.AluOut = true;
+
+            // Act
+            sut.Low();
+
+            // Assert
+            bus.Data.ShouldBe((byte)8);
         }
     }
 }
