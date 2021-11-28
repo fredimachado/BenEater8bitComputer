@@ -15,12 +15,27 @@ namespace BenEater8BitComputer.Emulator.Tests
         }
 
         [Fact]
-        public void Give_CounterOutIsTrue_ShouldWriteProgramCounterToBus()
+        public void Give_COControlIsDisabled_ShouldWriteProgramCounterToBus()
         {
             // Arrange
             byte pcValue = 2;
             sut.Value = pcValue;
-            sut.CounterOut = true;
+            bus.SetControleLineFlags(~ControlLineFlags.CO);
+
+            // Act
+            sut.Low();
+
+            // Assert
+            bus.Data.ShouldNotBe(pcValue);
+        }
+
+        [Fact]
+        public void Give_COControlIsEnabled_ShouldWriteProgramCounterToBus()
+        {
+            // Arrange
+            byte pcValue = 2;
+            sut.Value = pcValue;
+            bus.SetControleLineFlags(ControlLineFlags.CO);
 
             // Act
             sut.Low();
@@ -30,11 +45,11 @@ namespace BenEater8BitComputer.Emulator.Tests
         }
 
         [Fact]
-        public void Given_CounterEnabledIsFalse_ShouldNotIncrementCounter()
+        public void Given_CEControlIsDisabled_ShouldNotIncrementCounter()
         {
             // Arrange
             sut.Value = 0;
-            sut.CounterEnabled = false;
+            bus.SetControleLineFlags(~ControlLineFlags.CE);
 
             // Act
             sut.RisingEdge();
@@ -44,11 +59,11 @@ namespace BenEater8BitComputer.Emulator.Tests
         }
 
         [Fact]
-        public void Given_CounterEnabledIsTrue_ShouldIncrementCounter()
+        public void Given_CEControlIsEnabled_ShouldIncrementCounter()
         {
             // Arrange
             sut.Value = 0;
-            sut.CounterEnabled = true;
+            bus.SetControleLineFlags(ControlLineFlags.CE);
 
             // Act
             sut.RisingEdge();
@@ -62,7 +77,7 @@ namespace BenEater8BitComputer.Emulator.Tests
         {
             // Arrange
             sut.Value = 14;
-            sut.CounterEnabled = true;
+            bus.SetControleLineFlags(ControlLineFlags.CE);
 
             // Act
             sut.RisingEdge();
@@ -76,7 +91,7 @@ namespace BenEater8BitComputer.Emulator.Tests
         {
             // Arrange
             sut.Value = 15;
-            sut.CounterEnabled = true;
+            bus.SetControleLineFlags(ControlLineFlags.CE);
 
             // Act
             sut.RisingEdge();
@@ -86,12 +101,12 @@ namespace BenEater8BitComputer.Emulator.Tests
         }
 
         [Fact]
-        public void Given_DataInBus_AndCounterInIsFalse_ShouldNotSetCounter()
+        public void Given_DataInBus_AndJControlIsDisabled_ShouldNotSetCounter()
         {
             // Arrange
             byte data = 5;
             bus.Data = data;
-            sut.CounterIn = false;
+            bus.SetControleLineFlags(~ControlLineFlags.J);
 
             // Act
             sut.RisingEdge();
@@ -101,12 +116,12 @@ namespace BenEater8BitComputer.Emulator.Tests
         }
 
         [Fact]
-        public void Given_DataInBus_AndCounterInIsTrue_ShouldSetCounter()
+        public void Given_DataInBus_AndJControlIsEnabled_ShouldSetCounter()
         {
             // Arrange
             byte data = 5;
             bus.Data = data;
-            sut.CounterIn = true;
+            bus.SetControleLineFlags(ControlLineFlags.J);
 
             // Act
             sut.RisingEdge();
@@ -116,12 +131,12 @@ namespace BenEater8BitComputer.Emulator.Tests
         }
 
         [Fact]
-        public void Given_DataInBus_AndCounterInIsTrue_ShouldOnlySet4MostSignificantBitsToCounter()
+        public void Given_DataInBus_AndJControlIsEnabled_ShouldOnlySet4MostSignificantBitsToCounter()
         {
             // Arrange
             byte data = 0xF4;
             bus.Data = data;
-            sut.CounterIn = true;
+            bus.SetControleLineFlags(ControlLineFlags.J);
 
             // Act
             sut.RisingEdge();

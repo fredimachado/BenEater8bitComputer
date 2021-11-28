@@ -12,13 +12,9 @@ public class Pc : Component
 
     public byte Value { get; internal set; }
 
-    public bool CounterIn { get; internal set; }
-    public bool CounterOut { get; internal set; }
-    public bool CounterEnabled { get; internal set; }
-
     public override void Low()
     {
-        if (CounterOut)
+        if (bus.HasControlLineFlags(ControlLineFlags.CO))
         {
             // We only write the 4 least significant bits
             var pc = (byte)(Value & 0x0F);
@@ -28,13 +24,13 @@ public class Pc : Component
 
     public override void RisingEdge()
     {
-        if (CounterIn)
+        if (bus.HasControlLineFlags(ControlLineFlags.J))
         {
             // Read data from bus and store its 4 least significant bits
             Value = (byte)(bus.Read() & 0x0F);
         }
 
-        if (CounterEnabled)
+        if (bus.HasControlLineFlags(ControlLineFlags.CE))
         {
             // Increment Program Counter
             Value++;
