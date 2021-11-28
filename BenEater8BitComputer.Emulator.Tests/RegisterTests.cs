@@ -5,14 +5,21 @@ namespace BenEater8BitComputer.Emulator.Tests
 {
     public class RegisterTests
     {
+        private readonly Bus bus;
+        private readonly Register sut;
+
+        public RegisterTests()
+        {
+            bus = new Bus();
+            sut = new Register(bus);
+        }
+
         [Fact]
         public void ReadsFromBusOnRisingEdge()
         {
             // Arrange
             byte data = 42;
-            var bus = new Bus();
             bus.Data = data;
-            var sut = new Register(bus);
 
             // Act
             sut.RisingEdge();
@@ -25,9 +32,7 @@ namespace BenEater8BitComputer.Emulator.Tests
         public void WriteToBusOnLow()
         {
             // Arrange
-            byte data = 42;
-            var bus = new Bus();
-            var sut = new Register(bus);
+            byte data = 43;
             sut.Value = data;
 
             // Act
@@ -35,6 +40,22 @@ namespace BenEater8BitComputer.Emulator.Tests
 
             // Assert
             bus.Data.ShouldBe(data);
+        }
+
+        [Fact]
+        public void CanTransferDataToAnotherRegister()
+        {
+            // Arrange
+            byte data = 44;
+            var registerB = new Register(bus);
+            registerB.Value = data;
+
+            // Act
+            registerB.Low();
+            sut.RisingEdge();
+
+            // Assert
+            sut.Value.ShouldBe(data);
         }
     }
 }
