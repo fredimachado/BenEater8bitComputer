@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BenEater8BitComputer.Emulator", "BenEater8BitComputer.Emulator\BenEater8BitComputer.Emulator.csproj", "{BDE71DCA-A1E8-4BCE-83AA-9C86B37453EC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BDE71DCA-A1E8-4BCE-83AA-9C86B37453EC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BDE71DCA-A1E8-4BCE-83AA-9C86B37453EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BDE71DCA-A1E8-4BCE-83AA-9C86B37453EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BDE71DCA-A1E8-4BCE-83AA-9C86B37453EC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {54B58248-0D29-40BA-846E-71D29CE09E5C}
+	EndGlobalSection
+EndGlobal
