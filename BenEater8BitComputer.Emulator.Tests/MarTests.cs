@@ -15,11 +15,27 @@ namespace BenEater8BitComputer.Emulator.Tests
         }
 
         [Fact]
-        public void ReadsValueFromBus()
+        public void Given_MarInIsFalse_ShouldNotReadValueFromBus()
         {
             // Arrange
             byte data = 5;
             bus.Data = data;
+            sut.MemoryAddressRegisterIn = false;
+
+            // Act
+            sut.RisingEdge();
+
+            // Assert
+            sut.Value.ShouldNotBe(data);
+        }
+
+        [Fact]
+        public void Given_MarInIsTrue_ShouldReadValueFromBus()
+        {
+            // Arrange
+            byte data = 5;
+            bus.Data = data;
+            sut.MemoryAddressRegisterIn = true;
 
             // Act
             sut.RisingEdge();
@@ -29,12 +45,13 @@ namespace BenEater8BitComputer.Emulator.Tests
         }
 
         [Fact]
-        public void OnlyReads4MostSignificantBits()
+        public void Given_Data_ShouldOnlyRead4MostSignificantBits()
         {
             // Arrange
             byte expected = 0xA;
             byte data = 0xFA;
             bus.Data = data;
+            sut.MemoryAddressRegisterIn = true;
 
             // Act
             sut.RisingEdge();
