@@ -15,12 +15,12 @@ namespace BenEater8BitComputer.Emulator.Tests
         }
 
         [Fact]
-        public void WritesProgramCounterToBus()
+        public void Give_CounterOutIsTrue_ShouldWriteProgramCounterToBus()
         {
             // Arrange
             byte pcValue = 2;
             sut.Value = pcValue;
-            sut.CounterOutput = true;
+            sut.CounterOut = true;
 
             // Act
             sut.Low();
@@ -30,7 +30,7 @@ namespace BenEater8BitComputer.Emulator.Tests
         }
 
         [Fact]
-        public void DontIncrementIfCounterNotEnabled()
+        public void Given_CounterEnabledIsFalse_ShouldNotIncrementCounter()
         {
             // Arrange
             sut.Value = 0;
@@ -44,7 +44,7 @@ namespace BenEater8BitComputer.Emulator.Tests
         }
 
         [Fact]
-        public void IncrementsPcOnRisingEdge()
+        public void Given_CounterEnabledIsTrue_ShouldIncrementCounter()
         {
             // Arrange
             sut.Value = 0;
@@ -58,7 +58,7 @@ namespace BenEater8BitComputer.Emulator.Tests
         }
 
         [Fact]
-        public void CanCountTo15()
+        public void Given_CounterIs14_ShouldCountTo15()
         {
             // Arrange
             sut.Value = 14;
@@ -72,7 +72,7 @@ namespace BenEater8BitComputer.Emulator.Tests
         }
 
         [Fact]
-        public void CountOverThan15ShouldResetCounter()
+        public void Given_CounterIs15_ShouldResetCounter()
         {
             // Arrange
             sut.Value = 15;
@@ -83,6 +83,51 @@ namespace BenEater8BitComputer.Emulator.Tests
 
             // Assert
             sut.Value.ShouldBe((byte)0);
+        }
+
+        [Fact]
+        public void Given_DataInBus_AndCounterInIsFalse_ShouldNotSetCounter()
+        {
+            // Arrange
+            byte data = 5;
+            bus.Data = data;
+            sut.CounterIn = false;
+
+            // Act
+            sut.RisingEdge();
+
+            // Assert
+            sut.Value.ShouldNotBe(data);
+        }
+
+        [Fact]
+        public void Given_DataInBus_AndCounterInIsTrue_ShouldSetCounter()
+        {
+            // Arrange
+            byte data = 5;
+            bus.Data = data;
+            sut.CounterIn = true;
+
+            // Act
+            sut.RisingEdge();
+
+            // Assert
+            sut.Value.ShouldBe(data);
+        }
+
+        [Fact]
+        public void Given_DataInBus_AndCounterInIsTrue_ShouldOnlySet4MostSignificantBitsToCounter()
+        {
+            // Arrange
+            byte data = 0xF4;
+            bus.Data = data;
+            sut.CounterIn = true;
+
+            // Act
+            sut.RisingEdge();
+
+            // Assert
+            sut.Value.ShouldBe((byte)4);
         }
     }
 }
