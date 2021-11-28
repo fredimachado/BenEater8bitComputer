@@ -6,5 +6,7 @@
 /// </summary>
 public class Stepper : Component
 {
-
+    public Stepper(Bus bus) : base(bus)
+    {
+    }
 }

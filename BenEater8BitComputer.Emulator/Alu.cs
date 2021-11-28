@@ -5,5 +5,7 @@
 /// </summary>
 public class Alu : Component
 {
-
+    public Alu(Bus bus) : base(bus)
+    {
+    }
 }

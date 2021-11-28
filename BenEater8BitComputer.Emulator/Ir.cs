@@ -5,5 +5,7 @@
 /// </summary>
 public class Ir : Component
 {
-
+    public Ir(Bus bus) : base(bus)
+    {
+    }
 }

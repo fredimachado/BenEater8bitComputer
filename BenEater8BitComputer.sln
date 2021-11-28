@@ -5,6 +5,12 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BenEater8BitComputer.Emulator", "BenEater8BitComputer.Emulator\BenEater8BitComputer.Emulator.csproj", "{BDE71DCA-A1E8-4BCE-83AA-9C86B37453EC}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{C076DDB2-CF4E-4864-8CD2-E97E8CF3A693}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{A5265C41-B09F-454C-908F-EE5F8DD57CAC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BenEater8BitComputer.Emulator.Tests", "BenEater8BitComputer.Emulator.Tests\BenEater8BitComputer.Emulator.Tests.csproj", "{DD29FD1F-832B-459B-BE56-F738E409FC42}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,9 +21,17 @@ Global
 		{BDE71DCA-A1E8-4BCE-83AA-9C86B37453EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BDE71DCA-A1E8-4BCE-83AA-9C86B37453EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BDE71DCA-A1E8-4BCE-83AA-9C86B37453EC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DD29FD1F-832B-459B-BE56-F738E409FC42}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DD29FD1F-832B-459B-BE56-F738E409FC42}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DD29FD1F-832B-459B-BE56-F738E409FC42}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DD29FD1F-832B-459B-BE56-F738E409FC42}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{BDE71DCA-A1E8-4BCE-83AA-9C86B37453EC} = {C076DDB2-CF4E-4864-8CD2-E97E8CF3A693}
+		{DD29FD1F-832B-459B-BE56-F738E409FC42} = {A5265C41-B09F-454C-908F-EE5F8DD57CAC}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {54B58248-0D29-40BA-846E-71D29CE09E5C}

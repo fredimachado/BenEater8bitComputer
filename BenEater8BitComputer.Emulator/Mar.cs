@@ -6,5 +6,7 @@
 /// </summary>
 public class Mar : Component
 {
-
+    public Mar(Bus bus) : base(bus)
+    {
+    }
 }

@@ -6,5 +6,15 @@
 /// </summary>
 public class Bus
 {
+    public byte Data { get;  internal set; }
 
+    internal byte Read()
+    {
+        return Data;
+    }
+
+    internal void Write(byte value)
+    {
+        Data = value;
+    }
 }
