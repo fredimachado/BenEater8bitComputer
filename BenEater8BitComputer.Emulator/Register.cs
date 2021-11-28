@@ -11,13 +11,22 @@ public class Register : Component
 
     public byte Value { get; internal set; }
 
+    public bool RegisterIn { get; internal set; }
+    public bool RegisterOut { get; internal set; }
+
     public override void Low()
     {
-        bus.Write(Value);
+        if (RegisterOut)
+        {
+            bus.Write(Value);
+        }
     }
 
     public override void RisingEdge()
     {
-        Value = bus.Read();
+        if (RegisterIn)
+        {
+            Value = bus.Read();
+        }
     }
 }
