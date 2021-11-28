@@ -5,18 +5,21 @@
 /// </summary>
 public class Register : Component
 {
-    public Register(Bus bus) : base(bus)
+    private readonly ControlLineFlags inControl;
+    private readonly ControlLineFlags outControl;
+
+    public Register(Bus bus, ControlLineFlags inControl = ControlLineFlags.None, ControlLineFlags outControl = ControlLineFlags.None)
+        : base(bus)
     {
+        this.inControl = inControl;
+        this.outControl = outControl;
     }
 
     public byte Value { get; internal set; }
 
-    public bool RegisterIn { get; internal set; }
-    public bool RegisterOut { get; internal set; }
-
     public override void Low()
     {
-        if (RegisterOut)
+        if (bus.HasControlLineFlags(outControl))
         {
             bus.Write(Value);
         }
@@ -24,7 +27,7 @@ public class Register : Component
 
     public override void RisingEdge()
     {
-        if (RegisterIn)
+        if (bus.HasControlLineFlags(inControl))
         {
             Value = bus.Read();
         }

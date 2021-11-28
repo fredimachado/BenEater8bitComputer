@@ -7,20 +7,22 @@ namespace BenEater8BitComputer.Emulator.Tests
     {
         private readonly Bus bus;
         private readonly Register sut;
+        private readonly ControlLineFlags inControl = ControlLineFlags.AI;
+        private readonly ControlLineFlags outControl = ControlLineFlags.AO;
 
         public RegisterTests()
         {
             bus = new Bus();
-            sut = new Register(bus);
+            sut = new Register(bus, inControl, outControl);
         }
 
         [Fact]
-        public void Given_DataInBus_AndRegisterInIsFalse_ShouldNotReadOnRisingEdge()
+        public void Given_DataInBus_AndInControlIsDisabled_ShouldNotReadOnRisingEdge()
         {
             // Arrange
             byte data = 42;
             bus.Data = data;
-            sut.RegisterIn = false;
+            bus.SetControleLineFlags(~inControl);
 
             // Act
             sut.RisingEdge();
@@ -30,12 +32,12 @@ namespace BenEater8BitComputer.Emulator.Tests
         }
 
         [Fact]
-        public void Given_DataInBus_AndRegisterInIsTrue_ShouldReadOnRisingEdge()
+        public void Given_DataInBus_AndInControlIsEnabled_ShouldReadOnRisingEdge()
         {
             // Arrange
             byte data = 42;
             bus.Data = data;
-            sut.RegisterIn = true;
+            bus.SetControleLineFlags(inControl);
 
             // Act
             sut.RisingEdge();
@@ -45,12 +47,12 @@ namespace BenEater8BitComputer.Emulator.Tests
         }
 
         [Fact]
-        public void Given_Value_AndRegisterOutIsFalse_ShouldNotWriteToBusOnLow()
+        public void Given_Value_AndOutControlIsDisabled_ShouldNotWriteToBusOnLow()
         {
             // Arrange
             byte data = 43;
             sut.Value = data;
-            sut.RegisterOut = false;
+            bus.SetControleLineFlags(~outControl);
 
             // Act
             sut.Low();
@@ -60,12 +62,12 @@ namespace BenEater8BitComputer.Emulator.Tests
         }
 
         [Fact]
-        public void Given_Value_AndRegisterOutIsTrue_ShouldWriteToBusOnLow()
+        public void Given_Value_AndOutControlIsEnabled_ShouldWriteToBusOnLow()
         {
             // Arrange
             byte data = 43;
             sut.Value = data;
-            sut.RegisterOut = true;
+            bus.SetControleLineFlags(outControl);
 
             // Act
             sut.Low();
@@ -79,18 +81,18 @@ namespace BenEater8BitComputer.Emulator.Tests
         {
             // Arrange
             byte data = 44;
-            var registerB = new Register(bus);
-            registerB.Value = data;
-            registerB.RegisterOut = true;
-
-            sut.RegisterIn = true;
+            sut.Value = data;
+            
+            var registerB = new Register(bus, ControlLineFlags.BI);
 
             // Act
-            registerB.Low();
-            sut.RisingEdge();
+            bus.SetControleLineFlags(outControl);
+            sut.Low();
+            bus.SetControleLineFlags(ControlLineFlags.BI);
+            registerB.RisingEdge();
 
             // Assert
-            sut.Value.ShouldBe(data);
+            registerB.Value.ShouldBe(data);
         }
     }
 }
