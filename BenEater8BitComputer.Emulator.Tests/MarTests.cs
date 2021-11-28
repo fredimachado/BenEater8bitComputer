@@ -15,7 +15,7 @@ namespace BenEater8BitComputer.Emulator.Tests
         }
 
         [Fact]
-        public void Given_MarInIsFalse_ShouldNotReadValueFromBus()
+        public void Given_DataInBus_AndMarInIsFalse_ShouldNotReadValueFromBus()
         {
             // Arrange
             byte data = 5;
@@ -30,7 +30,7 @@ namespace BenEater8BitComputer.Emulator.Tests
         }
 
         [Fact]
-        public void Given_MarInIsTrue_ShouldReadValueFromBus()
+        public void Given_DataInBus_AndMarInIsTrue_ShouldReadValueFromBus()
         {
             // Arrange
             byte data = 5;
@@ -45,7 +45,7 @@ namespace BenEater8BitComputer.Emulator.Tests
         }
 
         [Fact]
-        public void Given_Data_ShouldOnlyRead4MostSignificantBits()
+        public void Given_DataInBus_ShouldOnlyRead4MostSignificantBits()
         {
             // Arrange
             byte expected = 0xA;
