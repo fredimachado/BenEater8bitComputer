@@ -18,8 +18,6 @@ public class Alu : Component
 
     public bool Subtract { get; internal set; }
 
-    public bool AluOut { get; internal set; }
-
     public override void Low()
     {
         Calculate();
@@ -37,7 +35,7 @@ public class Alu : Component
         var carryIn = Subtract ? 1 : 0;
         Sum = (byte)(a + b + carryIn);
 
-        if (AluOut)
+        if (bus.HasControlLineFlags(ControlLineFlags.EO))
         {
             bus.Write(Sum);
         }

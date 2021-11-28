@@ -48,12 +48,12 @@ namespace BenEater8BitComputer.Emulator.Tests
         }
 
         [Fact]
-        public void Given_AAndBRegister_AndAluOutIsFalse_ShouldNotWriteResultToBus()
+        public void Given_AAndBRegister_AndControlLineIsDisabled_ShouldNotWriteResultToBus()
         {
             // Arrange
             aRegister.Value = 6;
             bRegister.Value = 2;
-            sut.AluOut = false;
+            bus.SetControleLineFlags(~ControlLineFlags.EO);
 
             // Act
             sut.Low();
@@ -63,12 +63,12 @@ namespace BenEater8BitComputer.Emulator.Tests
         }
 
         [Fact]
-        public void Given_AAndBRegister_AndAluOutIsTrue_ShouldWriteResultToBus()
+        public void Given_AAndBRegister_AndControlLineIsEnabled_ShouldWriteResultToBus()
         {
             // Arrange
             aRegister.Value = 6;
             bRegister.Value = 2;
-            sut.AluOut = true;
+            bus.SetControleLineFlags(ControlLineFlags.EO);
 
             // Act
             sut.Low();
