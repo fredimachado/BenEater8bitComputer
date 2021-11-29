@@ -12,6 +12,11 @@ public class Mar : Component
 
     public byte Value { get; internal set; }
 
+    public override void Reset()
+    {
+        Value = 0;
+    }
+
     public override void RisingEdge()
     {
         if (bus.HasControlLineFlags(ControlLineFlags.MI))

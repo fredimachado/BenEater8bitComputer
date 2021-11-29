@@ -12,6 +12,7 @@ public abstract class Component
         this.bus = bus;
     }
 
+    public virtual void Reset() {}
     public virtual void Low() {}
     public virtual void RisingEdge() {}
     public virtual void High() {}

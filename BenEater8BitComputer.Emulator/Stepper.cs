@@ -12,6 +12,11 @@ public class Stepper : Component
 
     public byte Value { get; internal set; }
 
+    public override void Reset()
+    {
+        Value = 0;
+    }
+
     public override void RisingEdge()
     {
         Value++;
