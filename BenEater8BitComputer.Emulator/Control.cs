@@ -68,4 +68,9 @@ public class Control : Component
         var controlLineFlags = microcode[index];
         bus.SetControleLineFlags(controlLineFlags);
     }
+
+    public override string ToString()
+    {
+        return bus.ControlLine.ToString();
+    }
 }

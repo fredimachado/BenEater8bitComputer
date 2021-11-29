@@ -20,4 +20,9 @@ public class Mar : Component
             Value = (byte)(bus.Read() & 0x0F);
         }
     }
+
+    public override string ToString()
+    {
+        return $"0x{Value:X2} ({Value})";
+    }
 }

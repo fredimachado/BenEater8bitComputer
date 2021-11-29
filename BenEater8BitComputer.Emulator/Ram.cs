@@ -32,4 +32,9 @@ public class Ram : Component
             Data[memoryAddressRegister.Value] = bus.Read();
         }
     }
+
+    public override string ToString()
+    {
+        return $"0x{Value:X2} ({Value})";
+    }
 }

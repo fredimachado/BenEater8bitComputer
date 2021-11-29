@@ -39,4 +39,9 @@ public class Alu : Component
             bus.Write(Sum);
         }
     }
+
+    public override string ToString()
+    {
+        return $"0x{Sum:X2} ({Sum})";
+    }
 }

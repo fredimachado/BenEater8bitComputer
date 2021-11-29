@@ -22,4 +22,9 @@ public class Stepper : Component
             Value = 0;
         }
     }
+
+    public override string ToString()
+    {
+        return $"T{Value}";
+    }
 }
