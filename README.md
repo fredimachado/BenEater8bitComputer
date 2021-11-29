@@ -8,6 +8,7 @@ I came across Ben Eater's 8-bit computer series a while ago and thought about bu
 If you want to have a look at his awesome content, check out his YouTube channel: https://www.youtube.com/c/BenEater
 
 ## TODO
+- [ ] Update implementation since the last video I watched was https://www.youtube.com/watch?v=FCscQGBIL-Y
 - [ ] Build a Blazor WASM project to load programs and see the emulator in action
 
 ## Contributing
