@@ -18,25 +18,25 @@ public class Control : Component
         this.instructionRegister = instructionRegister;
         this.stepperRegister = stepperRegister;
 
-        var fetchT0 = ControlLineFlags.MI | ControlLineFlags.CO;
-        var fetchT1 = ControlLineFlags.RO | ControlLineFlags.II | ControlLineFlags.CE;
+        var fetchT0 = C.MI | C.CO;
+        var fetchT1 = C.RO | C.II | C.CE;
 
-        microcode = new ControlLineFlags[]
+        microcode = new C[]
         {
                 // 0000 - NOP
                 fetchT0, fetchT1, 0,           0,           0,                  0, 0, 0,
                 // 0001 - LDA
-                fetchT0, fetchT1, ControlLineFlags.IO | ControlLineFlags.MI, ControlLineFlags.RO | ControlLineFlags.AI, 0,                  0, 0, 0,
+                fetchT0, fetchT1, C.IO | C.MI, C.RO | C.AI, 0,                  0, 0, 0,
                 // 0010 - ADD
-                fetchT0, fetchT1, ControlLineFlags.IO | ControlLineFlags.MI, ControlLineFlags.RO | ControlLineFlags.BI, ControlLineFlags.EO | ControlLineFlags.AI,        0, 0, 0,
+                fetchT0, fetchT1, C.IO | C.MI, C.RO | C.BI, C.EO | C.AI,        0, 0, 0,
                 // 0011 - SUB
-                fetchT0, fetchT1, ControlLineFlags.IO | ControlLineFlags.MI, ControlLineFlags.RO | ControlLineFlags.BI, ControlLineFlags.EO | ControlLineFlags.AI | ControlLineFlags.SU, 0, 0, 0,
+                fetchT0, fetchT1, C.IO | C.MI, C.RO | C.BI, C.EO | C.AI | C.SU, 0, 0, 0,
                 // 0100 - STA
-                fetchT0, fetchT1, ControlLineFlags.IO | ControlLineFlags.MI, ControlLineFlags.AO | ControlLineFlags.RI, 0,                  0, 0, 0,
+                fetchT0, fetchT1, C.IO | C.MI, C.AO | C.RI, 0,                  0, 0, 0,
                 // 0101 - LDI
-                fetchT0, fetchT1, ControlLineFlags.IO | ControlLineFlags.AI, 0,           0,                  0, 0, 0,
+                fetchT0, fetchT1, C.IO | C.AI, 0,           0,                  0, 0, 0,
                 // 0110 - JMP
-                fetchT0, fetchT1, ControlLineFlags.IO | ControlLineFlags.J,  0,           0,                  0, 0, 0,
+                fetchT0, fetchT1, C.IO | C.J,  0,           0,                  0, 0, 0,
                 // 0111
                 fetchT0, fetchT1, 0,           0,           0,                  0, 0, 0,
                 // 1000
@@ -52,9 +52,9 @@ public class Control : Component
                 // 1101
                 fetchT0, fetchT1, 0,           0,           0,                  0, 0, 0,
                 // 1110 - OUT
-                fetchT0, fetchT1, ControlLineFlags.AO | ControlLineFlags.OI, 0,           0,                  0, 0, 0,
+                fetchT0, fetchT1, C.AO | C.OI, 0,           0,                  0, 0, 0,
                 // 1111 - HLT
-                fetchT0, fetchT1, ControlLineFlags.HLT,       0,           0,                  0, 0, 0,
+                fetchT0, fetchT1, C.HLT,       0,           0,                  0, 0, 0,
         };
     }
 
