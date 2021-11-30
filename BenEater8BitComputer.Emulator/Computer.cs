@@ -1,9 +1,11 @@
-﻿namespace BenEater8BitComputer.Emulator;
+﻿using System.Collections.Immutable;
+
+namespace BenEater8BitComputer.Emulator;
 
 public class Computer
 {
     private readonly Bus bus;
-    private readonly Component[] components;
+    private readonly ImmutableArray<Component> components;
 
     public Register A { get; }
     public Register B { get; }
@@ -45,7 +47,7 @@ public class Computer
         };
         this.components = components
             .Concat(extraComponents)
-            .ToArray();
+            .ToImmutableArray();
     }
 
     public bool IsRunning => !bus.HasControlLineFlags(ControlLineFlags.HLT);
