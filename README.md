@@ -1,5 +1,7 @@
 # Ben Eater 8-bit Computer Emulator
 
+[![.NET](https://github.com/fredimachado/BenEater8bitComputer/actions/workflows/dotnet.yml/badge.svg)](https://github.com/fredimachado/BenEater8bitComputer/actions/workflows/dotnet.yml)
+
 Attempt to create a Ben Eater 8-bit computer emulator
 
 ## Background
