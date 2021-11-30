@@ -2,6 +2,10 @@
 
 namespace BenEater8BitComputer.Compiler.Text;
 
+/// <summary>
+/// Source code based on Immo Landwerth's (@terrajobst) compiler series
+/// https://www.youtube.com/channel/UCaFP8iQMTuPXinXBMEXsSuw
+/// </summary>
 public sealed class SourceText
 {
     private readonly string text;

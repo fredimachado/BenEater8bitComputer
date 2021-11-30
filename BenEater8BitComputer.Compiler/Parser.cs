@@ -9,6 +9,10 @@ internal sealed class Parser
     private readonly SourceText text;
     private int position;
 
+    /// <summary>
+    /// Source code based on Immo Landwerth's (@terrajobst) compiler series
+    /// https://www.youtube.com/channel/UCaFP8iQMTuPXinXBMEXsSuw
+    /// </summary>
     public Parser(SourceText text)
     {
         var tokens = new List<SyntaxToken>();

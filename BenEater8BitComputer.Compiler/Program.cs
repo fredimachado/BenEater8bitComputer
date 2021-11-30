@@ -3,6 +3,10 @@ using System.Collections.Immutable;
 
 namespace BenEater8BitComputer.Compiler;
 
+/// <summary>
+/// Source code based on Immo Landwerth's (@terrajobst) compiler series
+/// https://www.youtube.com/channel/UCaFP8iQMTuPXinXBMEXsSuw
+/// </summary>
 public sealed class Program
 {
     public Program(SourceText text, ImmutableArray<Diagnostic> diagnostics, ImmutableArray<InstructionSyntax> instructions, SyntaxToken endOfFileToken)

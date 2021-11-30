@@ -2,6 +2,10 @@
 
 namespace BenEater8BitComputer.Compiler;
 
+/// <summary>
+/// Source code based on Immo Landwerth's (@terrajobst) compiler series
+/// https://www.youtube.com/channel/UCaFP8iQMTuPXinXBMEXsSuw
+/// </summary>
 internal sealed class Lexer
 {
     private readonly SourceText text;
