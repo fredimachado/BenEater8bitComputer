@@ -4,6 +4,8 @@
 
 Attempt to create a Ben Eater 8-bit computer emulator
 
+Visit: https://fredimachado.github.io/BenEater8bitComputer/
+
 ## Background
 
 I'm fascinated about technology, so getting to know how computers work (and maybe build one) is something that I really enjoy doing.
@@ -19,9 +21,11 @@ Instructions implemented so far: **NOP**, **LDA**, **ADD**, **SUB**, **STA**, **
 
 - [x] Create compiler
 - [ ] Update implementation since the last video I watched was https://www.youtube.com/watch?v=FCscQGBIL-Y
-- [ ] Create a Blazor WASM Web project
-- [ ] Create compiler page in Web project
+- [x] Create a Blazor WASM Web project
+- [x] Create compiler page in Web project
 - [ ] Create a page to load programs and see the emulator in action
+- [ ] Improve the compiler page (Maybe show output in binary too? Return output in array format?)
+- [ ] Make the page look pretty (Might be the most difficult item in the TODO list for me)
 
 ## Contributing
 
