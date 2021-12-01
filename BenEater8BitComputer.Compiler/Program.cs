@@ -24,6 +24,8 @@ public sealed class Program
 
     public static Program Parse(string text)
     {
+        ArgumentNullException.ThrowIfNull(text);
+
         var sourceText = SourceText.From(text);
         return Parse(sourceText);
     }

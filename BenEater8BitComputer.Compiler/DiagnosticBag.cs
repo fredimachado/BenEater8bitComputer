@@ -60,7 +60,7 @@ internal sealed class DiagnosticBag : IEnumerable<Diagnostic>
 
     internal void ReportMissingOperand(SyntaxToken instruction)
     {
-        var message = $"Instruction'{instruction.Text}' requires an operand.";
+        var message = $"Instruction '{instruction.Text}' requires an operand.";
         Report(instruction.Span, message);
     }
 }

@@ -39,7 +39,7 @@ namespace BenEater8BitComputer.Compiler.Tests
             program.Instructions[0].Opcode.Kind.ShouldBe(SyntaxKind.SymbolToken);
             program.Instructions[0].Opcode.Text.ShouldBe("LDA");
             program.Instructions[0].Operand.ShouldBeNull();
-            parser.Diagnostics[0].Message.ShouldBe("Instruction'LDA' requires an operand.");
+            parser.Diagnostics[0].Message.ShouldBe("Instruction 'LDA' requires an operand.");
         }
 
         [Fact]

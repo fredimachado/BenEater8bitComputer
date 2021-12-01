@@ -21,7 +21,7 @@ SUB";
 
             // Assert
             program.Diagnostics.Length.ShouldBe(1);
-            program.Diagnostics[0].Message.ShouldBe("Instruction'SUB' requires an operand.");
+            program.Diagnostics[0].Message.ShouldBe("Instruction 'SUB' requires an operand.");
             var (lineNumber, column) = program.Text.GetLineNumberAndColumn(program.Diagnostics[0].Span);
             lineNumber.ShouldBe(3);
             column.ShouldBe(1);

@@ -52,6 +52,8 @@ public sealed class SourceText
 
     public static SourceText From(string text)
     {
+        ArgumentNullException.ThrowIfNull(text);
+
         return new SourceText(text);
     }
 
