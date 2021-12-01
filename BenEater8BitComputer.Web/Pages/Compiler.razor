@@ -1,5 +1,6 @@
 ﻿@page "/compiler"
 @using BenEater8BitComputer.Compiler
+@using System.Text
 
 <PageTitle>Compiler</PageTitle>
 
@@ -50,7 +51,22 @@
             }
 
             var assembler = new Assembler(program);
-            output = assembler.Emit();
+            var result = assembler.Emit();
+
+            if (!string.IsNullOrWhiteSpace(result.Error))
+            {
+                output = result.Error;
+                return;
+            }
+
+            var sb = new StringBuilder(result.Output.Length);
+            for (int i = 0; i < result.Output.Length; i++)
+            {
+                var data = result.Output[i];
+                sb.Append($"0x{data:X2} ");
+            }
+
+            output = sb.ToString();
         }
         catch (Exception ex)
         {

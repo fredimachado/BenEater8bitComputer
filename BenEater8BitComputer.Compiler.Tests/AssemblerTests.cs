@@ -27,7 +27,7 @@ namespace BenEater8BitComputer.Compiler.Tests
             var result = assembler.Emit();
 
             // Assert
-            result.ShouldBe($"0x{expected:X2}");
+            result.Output.ShouldBe(new byte[] { expected });
         }
 
         [Fact]
@@ -47,7 +47,7 @@ HLT";
             var result = assembler.Emit();
 
             // Assert
-            result.ShouldBe("0x1E 0x2F 0xE0 0xF0");
+            result.Output.ShouldBe(new byte[] { 0x1E, 0x2F, 0xE0, 0xF0 });
         }
     }
 }
