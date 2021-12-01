@@ -15,6 +15,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BenEater8BitComputer.Compil
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BenEater8BitComputer.Compiler.Tests", "BenEater8BitComputer.Compiler.Tests\BenEater8BitComputer.Compiler.Tests.csproj", "{F680FC41-871C-4D07-BA63-4BFBB789ACA2}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BenEater8BitComputer.Web", "BenEater8BitComputer.Web\BenEater8BitComputer.Web.csproj", "{E2363E96-DB09-4151-A345-036C8BA657D4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -37,6 +39,10 @@ Global
 		{F680FC41-871C-4D07-BA63-4BFBB789ACA2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F680FC41-871C-4D07-BA63-4BFBB789ACA2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F680FC41-871C-4D07-BA63-4BFBB789ACA2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E2363E96-DB09-4151-A345-036C8BA657D4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E2363E96-DB09-4151-A345-036C8BA657D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E2363E96-DB09-4151-A345-036C8BA657D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E2363E96-DB09-4151-A345-036C8BA657D4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -46,6 +52,7 @@ Global
 		{DD29FD1F-832B-459B-BE56-F738E409FC42} = {A5265C41-B09F-454C-908F-EE5F8DD57CAC}
 		{2C10AA9F-730D-424C-9CE4-A5CF9BB8619E} = {C076DDB2-CF4E-4864-8CD2-E97E8CF3A693}
 		{F680FC41-871C-4D07-BA63-4BFBB789ACA2} = {A5265C41-B09F-454C-908F-EE5F8DD57CAC}
+		{E2363E96-DB09-4151-A345-036C8BA657D4} = {C076DDB2-CF4E-4864-8CD2-E97E8CF3A693}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {54B58248-0D29-40BA-846E-71D29CE09E5C}

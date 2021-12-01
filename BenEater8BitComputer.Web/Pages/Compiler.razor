@@ -1,0 +1,60 @@
+﻿@page "/compiler"
+@using BenEater8BitComputer.Compiler
+
+<PageTitle>Compiler</PageTitle>
+
+<h1>Compiler</h1>
+
+<EditForm Model="model">
+
+    <p>
+        <label>
+            Input:<br />
+            <InputTextArea @bind-Value="model.Input" style="width:300px; height: 200px;"></InputTextArea>
+        </label>
+    </p>
+
+    <button class="btn btn-primary" @onclick="Compile">Compile</button>
+
+</EditForm>
+<br />
+
+<h3>Output:</h3>
+@if (output is not null)
+{
+    <textarea style="width:300px; height: 200px;">@output</textarea>
+}
+
+@code {
+    private CompilerModel model = new CompilerModel();
+
+    private string output;
+
+    void Compile()
+    {
+        try
+        {
+            var program = Program.Parse(model.Input);
+
+            if (program.Diagnostics.Any())
+            {
+                var errors = program.Diagnostics
+                    .Select(d =>
+                        {
+                            var (lineNumber, column) = program.Text.GetLineNumberAndColumn(d.Span);
+                            return $"Error: {d.Message} Line: {lineNumber}, Column: {column}.";
+                        })
+                    .ToArray();
+                output = string.Join(Environment.NewLine, errors);
+                return;
+            }
+
+            var assembler = new Assembler(program);
+            output = assembler.Emit();
+        }
+        catch (Exception ex)
+        {
+            output = $"Error: {ex.Message}";
+        }
+    }
+}
