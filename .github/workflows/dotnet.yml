@@ -32,7 +32,7 @@ jobs:
 
     # publishes Blazor project to the release-folder
     - name: Publish .NET Project
-      run: dotnet publish src/BenEater8BitComputer.Web/BenEater8BitComputer.Web.csproj -c Release -o release --nologo
+      run: dotnet publish BenEater8BitComputer.Web/BenEater8BitComputer.Web.csproj -c Release -o release --nologo
 
     # changes the base-tag in index.html from '/' to 'BenEater8bitComputer' to match GitHub Pages repository subdirectory
     - name: Change base-tag in index.html from / to BenEater8bitComputer
