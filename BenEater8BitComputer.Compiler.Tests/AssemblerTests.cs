@@ -49,5 +49,23 @@ HLT";
             // Assert
             result.Output.ShouldBe(new byte[] { 0x1E, 0x2F, 0xE0, 0xF0 });
         }
+
+        [Fact]
+        public void TestError()
+        {
+            // Arrange
+            var text = "LD";
+
+            var sourceText = SourceText.From(text);
+            var program = new Parser(sourceText).Parse();
+            var assembler = new Assembler(program);
+
+            // Act
+            var result = assembler.Emit();
+
+            // Assert
+            result.Error.ShouldBe("Unknown instruction 'LD'.");
+            result.Output.ShouldBeNull();
+        }
     }
 }
