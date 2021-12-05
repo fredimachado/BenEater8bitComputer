@@ -7,9 +7,9 @@
   "linkerEnabled": true,
   "resources": {
     "assembly": {
-      "BenEater8BitComputer.Compiler.dll": "sha256-2u3MHZaaO+yiaKeySfwnUF5mfVcWOUoGf\/jKDEsXOUk=",
+      "BenEater8BitComputer.Compiler.dll": "sha256-75e\/SlE+ww\/AK5pj2tXlsagXOlxUgAIt6o5sxZwRYn8=",
       "BenEater8BitComputer.Emulator.dll": "sha256-DqWOUx78+SjxILGmUe0q\/yojN0GWVYAZAJ0AbSJ8Ou4=",
-      "BenEater8BitComputer.Web.dll": "sha256-Cn35OjqMZMVOOUNZyi98jXLam2la8v\/CGgP2Ytktja4=",
+      "BenEater8BitComputer.Web.dll": "sha256-ywyVSnp9b7dYZ7jChM\/COcgcx0Apj2VV1+MdZFIsZsg=",
       "Microsoft.AspNetCore.Components.dll": "sha256-ht6oY7QMBvbb0UbnWdxEPQQkzi\/1qYn0yRucRmhEjmE=",
       "Microsoft.AspNetCore.Components.Forms.dll": "sha256-qnj0VvuujeTOJgOaGbImxkRDq25rrnrXEd3brkOKGwo=",
       "Microsoft.AspNetCore.Components.Web.dll": "sha256-uAnYCsymais4KxVFHz6funSkXW4o1EO5t54Vi+5d5DM=",
