@@ -86,16 +86,16 @@ internal sealed class Parser
 
     public InstructionSyntax ParseInstruction()
     {
-        var instruction = MatchToken(SyntaxKind.SymbolToken);
+        var instructionToken = MatchToken(SyntaxKind.SymbolToken);
 
-        var opcode = InstructionMap.Opcodes.FirstOrDefault(x => x.Mnemonic == instruction.Text);
-        if (opcode is null)
+        var instruction = InstructionMap.Instructions.FirstOrDefault(x => x.Mnemonic == instructionToken.Text);
+        if (instruction is null)
         {
-            Diagnostics.ReportUnknownInstruction(instruction);
+            Diagnostics.ReportUnknownInstruction(instructionToken);
         }
-        else if (opcode.HasOperand && Current.Kind != SyntaxKind.NumberToken)
+        else if (instruction.HasOperand && Current.Kind != SyntaxKind.NumberToken)
         {
-            Diagnostics.ReportMissingOperand(instruction);
+            Diagnostics.ReportMissingOperand(instructionToken);
         }
 
         SyntaxToken operand = null;
@@ -103,6 +103,6 @@ internal sealed class Parser
         {
             operand = NextToken();
         }
-        return new InstructionSyntax(instruction, operand);
+        return new InstructionSyntax(instructionToken, operand);
     }
 }

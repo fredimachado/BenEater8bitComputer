@@ -20,14 +20,14 @@ public sealed class Assembler
 
         foreach (var instruction in program.Instructions)
         {
-            var opcode = InstructionMap.Opcodes.FirstOrDefault(x => x.Mnemonic == instruction.Opcode.Text);
+            var instr = InstructionMap.Instructions.FirstOrDefault(x => x.Mnemonic == instruction.Instruction.Text);
 
-            if (opcode is null)
+            if (instr is null)
             {
-                return AssemblerResult.FromError($"Error: Cannot find opcode information for instruction {instruction.Opcode.Text}");
+                return AssemblerResult.FromError($"Error: Cannot find instruction '{instruction.Instruction.Text}'");
             }
 
-            byte data = (byte)(opcode.ByteCode << 4);
+            byte data = (byte)(instr.Opcode << 4);
             if (instruction.Operand is not null && instruction.Operand.Value is not null)
             {
                 data |= (byte)((byte)instruction.Operand.Value & 0b1111);

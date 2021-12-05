@@ -15,7 +15,7 @@ namespace BenEater8BitComputer.Compiler.Tests
         [Fact]
         public void ShouldMapAllImplementedInstructions()
         {
-            var opcodes = InstructionMap.Opcodes;
+            var instructions = InstructionMap.Instructions;
 
             for (int i = 0; i < 16; i++)
             {
@@ -26,7 +26,7 @@ namespace BenEater8BitComputer.Compiler.Tests
                 // If not None, than it is implemented
                 if (microcode != ControlLineFlags.None)
                 {
-                    opcodes.FirstOrDefault(x => x.ByteCode == i)
+                    instructions.FirstOrDefault(x => x.Opcode == i)
                         .ShouldNotBeNull($"Missing opcode information for instruction {i}");
                 }
             }

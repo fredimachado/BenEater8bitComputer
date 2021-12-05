@@ -1,15 +1,15 @@
 ﻿namespace BenEater8BitComputer.Compiler;
 
-public class Opcode
+public class Instruction
 {
-    public Opcode(string mnemonic, byte byteCode, bool hasOperand)
+    public Instruction(string mnemonic, byte opcode, bool hasOperand)
     {
         Mnemonic = mnemonic;
-        ByteCode = byteCode;
+        Opcode = opcode;
         HasOperand = hasOperand;
     }
 
     public string Mnemonic { get; }
-    public byte ByteCode { get; }
+    public byte Opcode { get; }
     public bool HasOperand { get; }
 }

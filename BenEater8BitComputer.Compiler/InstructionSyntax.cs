@@ -10,13 +10,13 @@ public sealed class InstructionSyntax : BaseSyntax
 {
     public InstructionSyntax(SyntaxToken instruction, SyntaxToken operand)
     {
-        Opcode = instruction;
+        Instruction = instruction;
         Operand = operand;
     }
 
     public override SyntaxKind Kind => SyntaxKind.InstructionSyntax;
-    public SyntaxToken Opcode { get; }
+    public SyntaxToken Instruction { get; }
     public SyntaxToken Operand { get; }
 
-    public TextSpan Span => TextSpan.FromBounds(Opcode.Span, Operand.Span);
+    public TextSpan Span => TextSpan.FromBounds(Instruction.Span, Operand.Span);
 }

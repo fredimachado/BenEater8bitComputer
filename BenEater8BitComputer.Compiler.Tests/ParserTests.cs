@@ -18,8 +18,8 @@ namespace BenEater8BitComputer.Compiler.Tests
             var program = parser.Parse();
 
             // Assert
-            program.Instructions[0].Opcode.Kind.ShouldBe(SyntaxKind.SymbolToken);
-            program.Instructions[0].Opcode.Text.ShouldBe("LDA");
+            program.Instructions[0].Instruction.Kind.ShouldBe(SyntaxKind.SymbolToken);
+            program.Instructions[0].Instruction.Text.ShouldBe("LDA");
             program.Instructions[0].Operand.Kind.ShouldBe(SyntaxKind.NumberToken);
             program.Instructions[0].Operand.Text.ShouldBe("15");
             program.Instructions[0].Operand.Value.ShouldBe(15);
@@ -36,8 +36,8 @@ namespace BenEater8BitComputer.Compiler.Tests
             var program = parser.Parse();
 
             // Assert
-            program.Instructions[0].Opcode.Kind.ShouldBe(SyntaxKind.SymbolToken);
-            program.Instructions[0].Opcode.Text.ShouldBe("LDA");
+            program.Instructions[0].Instruction.Kind.ShouldBe(SyntaxKind.SymbolToken);
+            program.Instructions[0].Instruction.Text.ShouldBe("LDA");
             program.Instructions[0].Operand.ShouldBeNull();
             parser.Diagnostics[0].Message.ShouldBe("Instruction 'LDA' requires an operand.");
         }
@@ -53,7 +53,7 @@ namespace BenEater8BitComputer.Compiler.Tests
             var program = parser.Parse();
 
             // Assert
-            program.Instructions[0].Opcode.Kind.ShouldBe(SyntaxKind.SymbolToken);
+            program.Instructions[0].Instruction.Kind.ShouldBe(SyntaxKind.SymbolToken);
             program.Instructions[0].Operand.Kind.ShouldBe(SyntaxKind.NumberToken);
             parser.Diagnostics[0].Message.ShouldStartWith("Unexpected token <NumberToken>");
         }
